@@ -8,6 +8,7 @@ unless ENV['SIMPLECOV_STARTED']
     add_filter '/spec/'         # don’t count spec files
   end
   SimpleCov.command_name 'RSpec'  # make report be “RSpec”
+  SimpleCov.coverage_dir 'coverage/rspec'
 end
 
 
