@@ -18,6 +18,8 @@ module NavigationHelpers
     when /^the edit page for "(.+)"$/i
       movie = Movie.find_by(title: $1)
       edit_movie_path(movie)
+      
+    when /^the new movie page$/ then new_movie_path
 
     when /^the details page for "(.+)"$/i
       movie = Movie.find_by(title: $1)

@@ -10,10 +10,6 @@
     Released on:
     <%= @movie.release_date.strftime("%B %d, %Y") %>
   </li>
-  <li>
-    Director:
-    <%= @movie.director.presence || "(none)" %>
-  </li>
 </ul>
 
 <h3>Description:</h3>
@@ -21,12 +17,19 @@
   <%= @movie.description %>
 </p>
 
-<p>
-  <%= link_to 'Find Movies With Same Director', same_director_movie_path(@movie) %>
-</p>
-
 <div class="row">
-  <%= link_to 'Edit', edit_movie_path(@movie), :class => 'btn btn-primary col-2' %>
-  <%= link_to 'Delete', movie_path(@movie), 'data-method' => 'delete', 'data-confirm' => 'Are you sure?', :class => 'btn btn-danger col-2' %>
-  <%= link_to 'Back to movie list', movies_path, :class => 'btn btn-primary col-2' %>
+  <!-- Added link for director search -->
+  <%= link_to 'Find Movies With Same Director',
+              same_director_movie_path(@movie),
+              class: 'btn btn-info col-3 mr-2' %>
+
+  <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-primary col-2 mr-2' %>
+
+  <!-- Changed to button_to so Capybara can trigger delete -->
+  <%= button_to 'Delete', movie_path(@movie),
+                method: :delete,
+                data: { confirm: 'Are you sure?' },
+                class: 'btn btn-danger col-2 mr-2' %>
+
+  <%= link_to 'Back to movie list', movies_path, class: 'btn btn-primary col-3' %>
 </div>
